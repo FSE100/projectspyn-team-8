@@ -1,0 +1,86 @@
+distance = brick.UltrasonicDist(4);
+pause(1);
+brick.MoveMotor('A',-50);
+brick.MoveMotor('D',50);
+pause (1);
+brick.StopMotor('A', 'Brake');
+brick.StopMotor('D','Brake');
+distanceRight = brick.UltrasonicDist(4);
+pause(1);
+brick.MoveMotor('A',-50);
+brick.MoveMotor('D',50);
+pause (2);
+brick.StopMotor('A', 'Brake');
+brick.StopMotor('D','Brake');
+distanceLeft = brick.UltrasonicDist(4);
+brick.SetColorMode(3,0);
+brightness = brick.LightReflect(3);
+disp(brightness)
+while( 0 <= brightness && brightness <= 55)
+    
+    if(distanceLeft >= distance && distanceLeft >= distanceRight)
+        brick.MoveMotor('A', 50);
+        brick.MoveMotor('D',50);
+        distance = brick.UltrasonicDist(4);
+        pause (5);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        pause (.5);
+        brick.MoveMotor('A',-50);
+        brick.MoveMotor('D',50);
+        pause (.5);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        distanceRight = brick.UltrasonicDist(4);
+        pause(.5);
+        brick.MoveMotor('A',-50);
+        brick.MoveMotor('D',50);
+        pause (1);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        distanceLeft = brick.UltrasonicDist(4);
+    elseif(distanceRight >= distance && distanceRight >= distanceLeft)
+        brick.MoveMotor('A', 50);
+        brick.MoveMotor('D',50);
+        distance = brick.UltrasonicDist(4);
+        pause (5);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        pause (1);
+        brick.MoveMotor('A',-50);
+        brick.MoveMotor('D',50);
+        pause (1);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        distanceRight = brick.UltraSonicDist(1);
+        pause(1);
+        brick.MoveMotor('A',-50);
+        brick.MoveMotor('D',50);
+        pause (2);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        distanceLeft = brick.UltrasonicDist(4);
+    elseif(distance >= distanceRight && distance >= distanceLeft)
+        brick.MoveMotor('A', 50);
+        brick.MoveMotor('D',50);
+        distance = brick.UltrasonicDist(4);
+        pause (5);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        pause (1);
+        brick.MoveMotor('A',-50);
+        brick.MoveMotor('D',50);
+        pause (1);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        distanceRight = brick.UltraSonicDist(1);
+        pause(1);
+        brick.MoveMotor('A',-50);
+        brick.MoveMotor('D',50);
+        pause (2);
+        brick.StopMotor('A', 'Brake');
+        brick.StopMotor('D','Brake');
+        distanceLeft = brick.UltrasonicDist(4);
+    end
+end
+
