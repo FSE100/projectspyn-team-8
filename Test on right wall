@@ -1,0 +1,98 @@
+brick.SetColorMode(3,2);
+
+
+
+brightness = brick.ColorCode(3);
+
+
+
+disp("Color: " + brightness)
+
+
+
+
+
+
+
+while ( 0 <= brightness && brightness <= 55)
+
+    
+    touch = brick.TouchPressed(1); % Read a touch sensor connected to port 1.
+    if (touch == 0 && distance <=20)
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        brick.SetColorMode(3,2);
+        
+        brightness = brick.ColorCode(3);
+        
+        disp("Color: " + brightness)
+        
+        
+        
+          
+            
+            brick.MoveMotor('A',50);
+            
+            brick.MoveMotor('D',50);
+            
+            brick.SetColorMode(3,2);
+            
+            brightness = brick.ColorCode(3);
+            
+            disp("Color: " + brightness)
+            
+            distance = brick.UltrasonicDist(4);
+            disp("Distance: " + distance)
+            
+    elseif (touch == 0 && distance >= 20)
+                
+                pause(.5)
+                
+                
+                
+                
+                brick.MoveMotor('A',-50);
+                
+                
+                
+                brick.MoveMotor('D',50);
+                
+                pause(.6);
+                distance = brick.UltrasonicDist(4);
+                brick.SetColorMode(3,2);
+                
+                brightness = brick.ColorCode(3);
+                
+                disp("Color: " + brightness)
+                
+                disp("Distance: " + distance)
+             
+    elseif (touch == 1)
+        
+        brick.StopMotor('A','Break');
+        brick.StopMotor('D','Break');
+        
+        brick.MoveMotor('A',-50);
+                     
+                
+       brick.MoveMotor('D',-50);
+        pause(.5);
+        
+        brick.MoveMotor('A',-50);
+                
+                
+                
+        brick.MoveMotor('D',50);
+        
+        pause(.6);
+        
+        brick.MoveMotor('A',50);
+                
+                
+                
+        brick.MoveMotor('D',50);
+            
+    end
+        
+    
+end
