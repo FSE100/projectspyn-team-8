@@ -17,3 +17,8 @@ brightness = brick.ColorCode(3);
 
 
 disp("Color: " + brightness)
+brick.StopMotor('A', 'Brake');
+
+
+
+        brick.StopMotor('D','Brake');
