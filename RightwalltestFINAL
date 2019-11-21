@@ -1,0 +1,218 @@
+brick.SetColorMode(3,2);
+
+
+
+brightness = brick.ColorCode(3);
+
+
+
+disp("Color: " + brightness)
+distance = brick.UltrasonicDist(4);
+
+disp("Distance: " + distance)
+
+
+
+
+while ( 0 <= brightness && brightness <= 55)
+    
+    
+    touch = brick.TouchPressed(1); % Read a touch sensor connected to port 1.
+    touch1 = brick.TouchPressed(2);
+    if (touch == 0 && touch1 == 0 && distance >=7 && distance <=25 && brightness ~= 5)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        brick.SetColorMode(3,2);   
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        
+        
+       brick.MoveMotor('A',49);
+        
+        brick.MoveMotor('D',50);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+    elseif (touch == 0 && touch1 == 0 && distance <=10 && brightness ~= 5)    
+     distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        brick.SetColorMode(3,2);   
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        
+        
+       brick.MoveMotor('A',44);
+        
+        brick.MoveMotor('D',50);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+    elseif(brightness == 5)
+   
+    brick.StopMotor('A','Brake');
+    brick.StopMotor('D','Brake');
+    disp('Stop')
+    pause (5);
+    disp('5 seconds have passed')
+   brick.MoveMotor('A',49);       
+        
+    brick.MoveMotor('D',50);
+    
+    pause(.5);
+    
+    brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        elseif(brightness == 4 && touch == 1)
+   
+    brick.StopMotor('A','Brake');
+    brick.StopMotor('D','Brake');
+    disp('Destination Reached')
+    pause (1);
+    disp('Have A Good Day!')
+    brick.MoveMotor('B',-5);       
+        
+    
+    pause(2);
+
+        break;
+        
+    elseif (touch == 0 && touch1 == 0 && distance >= 25 && brightness ~= 5)
+        
+        pause(.1)
+        
+    brick.StopMotor('A','Brake');
+    brick.StopMotor('D','Brake');
+    pause(.1)
+        
+         brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',-50);
+        
+        pause (.2);
+       brick.MoveMotor('A',49);
+        
+        
+        
+        brick.MoveMotor('D',-50);
+        
+        pause(.4);
+        
+       brick.MoveMotor('A',49);     
+        
+        
+        brick.MoveMotor('D',50);
+        
+        brightness = brick.ColorCode(3);
+        
+        disp("Color: " + brightness)
+        
+        pause(1);
+    
+        brick.MoveMotor('A',49);     
+        
+        
+        brick.MoveMotor('D',50);
+        
+        pause (.5);
+        distance = brick.UltrasonicDist(4);
+        brick.SetColorMode(3,2);
+        
+        brightness = brick.ColorCode(3);
+        
+        disp("Color: " + brightness)
+        
+        disp("Distance: " + distance)
+        
+    elseif (touch == 1)
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        brick.MoveMotor('D',-50);
+        pause(.15);
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        pause(.35);
+        
+       brick.MoveMotor('A',49);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+    
+         elseif (touch1 == 1)
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        brick.MoveMotor('D',-50);
+        pause(.15);
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        pause(.35);
+        
+       brick.MoveMotor('A',49);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+   
+        
+  
+    
+    end
+    
+    
+end
