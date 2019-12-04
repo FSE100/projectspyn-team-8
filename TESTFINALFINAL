@@ -1,0 +1,235 @@
+brick.SetColorMode(3,2); % Sets the color sensor (Port 3) and reads the current color
+brightness = brick.ColorCode(3);
+disp("Color: " + brightness)
+
+distance = brick.UltrasonicDist(4); % Sets the Distance Sensor (Port 4) and reads the current distance
+disp("Distance: " + distance)
+
+while ( 0 <= brightness && brightness <= 55) % Creates a while loop that won' end until Broken
+    
+    
+    touch = brick.TouchPressed(1); % Read a touch sensor connected to port 1.
+    touch1 = brick.TouchPressed(2); %Read a touch sensor connected to port 2.
+    
+    % When touch sensors are not touched and distance is in the specific range and not reading the color red (5) does the
+    % if statement following
+    
+    if (touch == 0 && touch1 == 0 && distance >=11 && distance <=30 && brightness ~= 5)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        
+        
+        brick.MoveMotor('A',49);
+        
+        brick.MoveMotor('D',50);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        % When touch sensors are not touched and distance is in the specific range and not reading the color red (5) does the
+        % elseif statement following
+        
+    elseif (touch == 0 && touch1 == 0 && distance <=10 && brightness ~= 5)
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        
+        
+        brick.MoveMotor('A',47);
+        
+        brick.MoveMotor('D',50);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        % When the color sensor Reads Red (5) does the else if statement
+        
+    elseif(brightness == 5)
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        disp('Stop')
+        pause (5);
+        disp('5 seconds have passed')
+        brick.MoveMotor('A',49);
+        
+        brick.MoveMotor('D',50);
+        
+        pause(.5);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        % When the color sensor reads Yellow (4) and the touch sensor in port 1 is pushed it will do the following statement.
+        
+    elseif(brightness == 3 && touch == 1)
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        disp('Destination Reached')
+        pause (1);
+        disp('Have A Good Day!')
+        brick.MoveMotor('B',-5);
+        
+        pause(1);
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',-50);
+        pause(1);
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        break;
+        
+        
+        % When the touch sensors are not pressed and the distance is greater than the treshhold distance and is nor reading red
+        %it does the following statement
+        
+    elseif (touch == 0 && touch1 == 0 && distance >= 31 && brightness ~= 5)
+        
+        pause(.1)
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        pause(.1)
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',-50);
+        
+        pause (.2);
+        brick.MoveMotor('A',50);
+        
+        
+        
+        brick.MoveMotor('D',-50);
+        
+        pause(.4);
+        
+        brick.MoveMotor('A',49);
+        
+        
+        brick.MoveMotor('D',50);
+        
+        brightness = brick.ColorCode(3);
+        
+        disp("Color: " + brightness)
+        
+        pause(1);
+        
+        brick.MoveMotor('A',49);
+        
+        
+        brick.MoveMotor('D',50);
+        
+        pause (.5);
+        distance = brick.UltrasonicDist(4);
+        brick.SetColorMode(3,2);
+        
+        brightness = brick.ColorCode(3);
+        
+        disp("Color: " + brightness)
+        
+        disp("Distance: " + distance)
+        
+        % The touch sensor connected to sensor 1 is pressed than it oes the following statement
+        
+    elseif (touch == 1)
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        brick.MoveMotor('D',-50);
+        pause(.25);
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        pause(.35);
+        
+        brick.MoveMotor('A',49);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        % When the touch sensor connected to port 2 is pressed than it does the following statement.
+        
+    elseif (touch1 == 1)
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        brick.MoveMotor('D',-50);
+        pause(.25);
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        pause(.35);
+        
+        brick.MoveMotor('A',49);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        brick.SetColorMode(3,2);
+        brightness = brick.ColorCode(3);
+        disp("Color: " + brightness)
+        
+        distance = brick.UltrasonicDist(4);
+        disp("Distance: " + distance)
+        
+        
+        
+        
+    end
+    
+    
+end
