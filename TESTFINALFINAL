@@ -5,7 +5,7 @@ disp("Color: " + brightness)
 distance = brick.UltrasonicDist(4); % Sets the Distance Sensor (Port 4) and reads the current distance
 disp("Distance: " + distance)
 
-while ( 0 <= brightness && brightness <= 55) % Creates a while loop that won' end until Broken
+while ( 0 <= brightness && brightness <= 55) % Creates a while loop that won't end until Broken
     
     
     touch = brick.TouchPressed(1); % Read a touch sensor connected to port 1.
@@ -82,9 +82,9 @@ while ( 0 <= brightness && brightness <= 55) % Creates a while loop that won' en
         distance = brick.UltrasonicDist(4);
         disp("Distance: " + distance)
         
-        % When the color sensor reads Yellow (4) and the touch sensor in port 1 is pushed it will do the following statement.
+        % When the color sensor reads Green (3) and the touch sensor in port 1 is pushed it will do the following statement.
         
-    elseif(brightness == 3 && touch == 1)
+    elseif(brightness == 3 && touch == 1 )
         
         brick.StopMotor('A','Brake');
         brick.StopMotor('D','Brake');
@@ -104,6 +104,48 @@ while ( 0 <= brightness && brightness <= 55) % Creates a while loop that won' en
         brick.StopMotor('A','Brake');
         brick.StopMotor('D','Brake');
         break;
+        
+        % When the color sensor reads Yellow (4) and the touch sensor in port 1 is pushed it will do the following statement.
+        
+    elseif(brightness == 4 && touch == 1 )
+        
+        brick.StopMotor('A','Brake');
+        brick.StopMotor('D','Brake');
+        disp('Pick Up Reached')
+        pause (1);
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',-50);
+        pause(.2);
+        brick.MoveMotor('B',-25);
+        pause(.4);
+        brick.MoveMotor('A',50);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        pause(.2);
+        disp('Welcome Aboard')
+        brick.MoveMotor('B',25);
+        
+        pause(1);
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',-50);
+        pause(3);
+        
+        brick.MoveMotor('A',-50);
+        
+        
+        
+        brick.MoveMotor('D',50);
+        
+        pause(.4);
+        
         
         
         % When the touch sensors are not pressed and the distance is greater than the treshhold distance and is nor reading red
